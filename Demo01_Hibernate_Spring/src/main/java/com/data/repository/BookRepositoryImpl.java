@@ -24,6 +24,14 @@ public class BookRepositoryImpl implements BookRepository {
 
         // b2: tạo query dùng HQL
         Query<Book> query = session.createQuery("FROM Book", Book.class);
+        // phân trang
+
+        int pageNumber = 1;
+        int size = 5;
+
+        int firstResult = (pageNumber - 1) * size;
+        query.setFirstResult(5);
+        query.setMaxResults(5);
         // b3: thực thi query
         List<Book> books = query.getResultList();
         //use hibernate to get data
